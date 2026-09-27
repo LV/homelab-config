@@ -67,6 +67,8 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
+      git
+      gnumake
       tree
     ];
   };
@@ -76,7 +78,6 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    git
     vim
     wget
   ];
