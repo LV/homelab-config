@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 {
   # Keep running with the lid closed (laptop used as a server)
