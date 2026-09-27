@@ -6,7 +6,10 @@ let
 
   updateScript = pkgs.writeShellApplication {
     name = "hetzner-ddns";
-    runtimeInputs = [ pkgs.curl pkgs.jq ];
+    runtimeInputs = [
+      pkgs.curl
+      pkgs.jq
+    ];
     text = ''
       token="$(< "$CREDENTIALS_DIRECTORY/token")"
       api="https://api.hetzner.cloud/v1/zones/${zone}/rrsets/${record}/A"

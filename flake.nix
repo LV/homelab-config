@@ -5,11 +5,13 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
   };
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs =
+    { nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    in
+    {
       nixosConfigurations.homelab = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
@@ -21,7 +23,12 @@
       formatter.${system} = pkgs.nixfmt-tree;
 
       devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [ nixfmt statix deadnix nil ];
+        packages = with pkgs; [
+          nixfmt
+          statix
+          deadnix
+          nil
+        ];
       };
     };
 }

@@ -2,14 +2,19 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ../modules/system/caddy.nix
-      ../modules/system/forgejo.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ../modules/system/caddy.nix
+    ../modules/system/forgejo.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -41,9 +46,6 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -112,7 +114,10 @@
   # accidentally delete configuration.nix.
   # system.copySystemConfiguration = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
@@ -134,4 +139,3 @@
   system.stateVersion = "26.05"; # Did you read the comment?
 
 }
-
