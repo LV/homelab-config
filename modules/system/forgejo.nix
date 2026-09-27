@@ -4,10 +4,13 @@
   services = {
     forgejo = {
       enable = true;
-      settings.server = {
-        HTTP_PORT = 3000;
-        DOMAIN = "192.168.1.13";
-        ROOT_URL = "http://192.168.1.13:3000/";
+      settings = {
+        server = {
+          HTTP_PORT = 3000;
+          DOMAIN = "git.luis.vi";
+          ROOT_URL = "https://git.luis.vi/";
+        };
+        service.DISABLE_REGISTRATION = true;
       };
     };
 
