@@ -13,6 +13,7 @@
     ../modules/system/caddy.nix
     ../modules/system/forgejo.nix
     ../modules/system/tailscale.nix
+    ../modules/system/tmux.nix
   ];
 
   # Use the GRUB 2 boot loader.
@@ -83,6 +84,7 @@
 
   environment.shellAliases = {
     gg = "lazygit";
+    t = "tmux";
   };
 
   # List packages installed in system profile.
