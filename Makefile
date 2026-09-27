@@ -1,16 +1,18 @@
-.PHONY: all switch
-
 DIR := $(shell pwd)
 
+.PHONY: all
 all: switch
 
+.PHONY: switch
 switch:
-	sudo -E nixos-rebuild switch --flake $(DIR)/#homelab --show-trace
+	nixos-rebuild switch --flake $(DIR)/#homelab --sudo --show-trace
 
+.PHONY: lint
 lint:
 	nix flake check
 	nix develop -c statix check .
 	nix develop -c deadnix --fail .
 
+.PHONY: fmt
 fmt:
 	nix fmt
