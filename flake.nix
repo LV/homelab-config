@@ -10,6 +10,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./common/configuration.nix
+        ./hosts/homelab
       ];
     };
   };

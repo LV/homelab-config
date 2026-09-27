@@ -7,7 +7,6 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ../hosts/homelab/hardware-configuration.nix
       ../modules/system/forgejo.nix
     ];
 
