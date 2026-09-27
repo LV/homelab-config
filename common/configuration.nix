@@ -27,6 +27,10 @@
   users.users.v = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGGsWJgncIoAVKioYVVMfqn7g0mSnpLORTgZg3UNNDxJ" # laptop
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKphnA9IH9KO8cKi7ZzX+zZzb74aU7UrVliw8vq4id6w" # phone
+    ];
     packages = with pkgs; [
       claude-code
       git
@@ -46,5 +50,11 @@
     wget
   ];
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
+  };
 }
