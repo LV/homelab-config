@@ -7,6 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      ../modules/system/caddy.nix
       ../modules/system/forgejo.nix
     ];
 
