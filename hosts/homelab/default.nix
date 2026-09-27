@@ -12,6 +12,7 @@
   boot.loader.grub = {
     enable = true;
     device = "/dev/nvme0n1";
+    configurationLimit = 10;
   };
 
   networking.hostName = "homelab";
