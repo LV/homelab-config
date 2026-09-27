@@ -31,6 +31,8 @@
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
 
+  nixpkgs.config.allowUnfree = true;
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -69,6 +71,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
+      claude-code
       git
       gnumake
       lazygit
