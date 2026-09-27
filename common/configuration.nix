@@ -70,11 +70,16 @@
     packages = with pkgs; [
       git
       gnumake
+      lazygit
       tree
     ];
   };
 
   # programs.firefox.enable = true;
+
+  environment.shellAliases = {
+    gg = "lazygit";
+  };
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
