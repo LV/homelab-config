@@ -12,6 +12,7 @@
     # Include the results of the hardware scan.
     ../modules/system/caddy.nix
     ../modules/system/forgejo.nix
+    ../modules/system/tailscale.nix
   ];
 
   # Use the GRUB 2 boot loader.
