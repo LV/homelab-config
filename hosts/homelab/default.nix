@@ -8,6 +8,7 @@ _:
     ../../modules/system/hetzner-ddns.nix
     ../../modules/system/lid.nix
     ../../modules/system/ntfy.nix
+    ../../modules/system/syncthing.nix
   ];
 
   boot.loader.grub = {
