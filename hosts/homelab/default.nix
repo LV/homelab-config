@@ -12,6 +12,8 @@ _:
     ../../modules/system/ntfy.nix
     ../../modules/system/prowlarr.nix
     ../../modules/system/qbittorrent.nix
+    ../../modules/system/radarr.nix
+    ../../modules/system/sonarr.nix
     ../../modules/system/syncthing.nix
   ];
 
