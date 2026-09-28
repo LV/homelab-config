@@ -6,6 +6,7 @@ _:
     ../../modules/system/caddy.nix
     ../../modules/system/forgejo.nix
     ../../modules/system/hetzner-ddns.nix
+    ../../modules/system/jellyfin.nix
     ../../modules/system/lid.nix
     ../../modules/system/media.nix
     ../../modules/system/ntfy.nix
