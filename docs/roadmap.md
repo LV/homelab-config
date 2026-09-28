@@ -29,7 +29,7 @@
 - [ ] Forgejo Actions runner
 - [ ] Automated `flake.lock` update PRs
 - [ ] GitOps deployment (comin)
-- [ ] Host this repo on Forgejo, push-mirror to GitHub
+- [X] Host this repo on Forgejo, push-mirror to GitHub
 - [ ] fail2ban/CrowdSec for public services
 - [ ] sops-nix for secrets
 
