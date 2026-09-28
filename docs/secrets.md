@@ -13,3 +13,24 @@ sudo install -d -m 700 /var/lib/secrets
 sudo sh -c 'umask 077; cat > /var/lib/secrets/hetzner-dns-token'
 # paste token, Enter, Ctrl+D
 ```
+
+## ntfy users and tokens
+
+- **Path:** `/var/lib/secrets/ntfy.env`
+- **What:** ntfy user (bcrypt password hash, admin role) and an access token for scripts
+- **Used by:** `ntfy` module (`services.ntfy-sh.environmentFile`)
+
+```bash
+ntfy user hash        # prompts for a password, prints a $2a$... hash
+ntfy token generate   # prints a random tk_... token
+
+sudo sh -c 'umask 077; cat > /var/lib/secrets/ntfy.env'
+# paste the lines below with real values, Enter, Ctrl+D
+```
+
+```
+NTFY_AUTH_USERS='v:$2a$10$...:admin'
+NTFY_AUTH_TOKENS='v:tk_...:scripts'
+```
+
+Keep the single quotes: the hash contains `$` characters.
