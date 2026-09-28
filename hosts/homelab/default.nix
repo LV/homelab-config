@@ -17,6 +17,10 @@ _:
   };
 
   networking.hostName = "homelab";
+  networking.hosts."127.0.0.1" = [
+    "git.luis.vi"
+    "ntfy.luis.vi"
+  ];
 
   time.timeZone = "America/New_York";
 
