@@ -12,15 +12,15 @@
     ];
     portMappings = [
       {
-        from = 8080;
-        to = 8080;
+        from = 8090;
+        to = 8090;
       }
     ];
   };
 
   services.qbittorrent = {
     enable = true;
-    webuiPort = 8080;
+    webuiPort = 8090;
     extraArgs = [ "--confirm-legal-notice" ];
   };
 
