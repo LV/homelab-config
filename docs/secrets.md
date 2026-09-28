@@ -14,7 +14,9 @@ sudo sh -c 'umask 077; cat > /var/lib/secrets/hetzner-dns-token'
 # paste token, Enter, Ctrl+D
 ```
 
-## ntfy users and tokens
+## ntfy
+
+### ntfy users and tokens
 
 - **Path:** `/var/lib/secrets/ntfy.env`
 - **What:** ntfy user (bcrypt password hash, admin role) and an access token for scripts
@@ -34,3 +36,15 @@ NTFY_AUTH_TOKENS='v:tk_...:scripts'
 ```
 
 Keep the single quotes: the hash contains `$` characters.
+
+### ntfy token for `notify`
+
+- **Path:** `~/.config/ntfy/token` (user `v`)
+- **What:** the ntfy access token from `/var/lib/secrets/ntfy.env`
+- **Used by:** the `notify` command
+
+```bash
+mkdir -p ~/.config/ntfy
+(umask 077; read -rs t; printf '%s\n' "$t" > ~/.config/ntfy/token)
+# paste token, Enter
+```
