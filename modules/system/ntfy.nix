@@ -4,6 +4,7 @@ _:
   services = {
     ntfy-sh = {
       enable = true;
+      environmentFile = "/var/lib/secrets/ntfy.env";
       settings = {
         base-url = "https://ntfy.luis.vi";
         listen-http = "127.0.0.1:2586";
