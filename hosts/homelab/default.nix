@@ -10,6 +10,7 @@ _:
     ../../modules/system/lid.nix
     ../../modules/system/media.nix
     ../../modules/system/ntfy.nix
+    ../../modules/system/prowlarr.nix
     ../../modules/system/qbittorrent.nix
     ../../modules/system/syncthing.nix
   ];
