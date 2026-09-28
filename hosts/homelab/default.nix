@@ -7,6 +7,7 @@ _:
     ../../modules/system/forgejo.nix
     ../../modules/system/hetzner-ddns.nix
     ../../modules/system/lid.nix
+    ../../modules/system/ntfy.nix
   ];
 
   boot.loader.grub = {
