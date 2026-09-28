@@ -7,6 +7,7 @@ _:
     ../../modules/system/forgejo.nix
     ../../modules/system/hetzner-ddns.nix
     ../../modules/system/lid.nix
+    ../../modules/system/ntfy.nix
   ];
 
   boot.loader.grub = {
@@ -16,6 +17,10 @@ _:
   };
 
   networking.hostName = "homelab";
+  networking.hosts."127.0.0.1" = [
+    "git.luis.vi"
+    "ntfy.luis.vi"
+  ];
 
   time.timeZone = "America/New_York";
 
