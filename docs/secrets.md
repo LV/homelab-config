@@ -48,3 +48,15 @@ mkdir -p ~/.config/ntfy
 (umask 077; read -rs t; printf '%s\n' "$t" > ~/.config/ntfy/token)
 # paste token, Enter
 ```
+
+## Mullvad WireGuard config
+
+- **Path:** `/var/lib/secrets/mullvad-wg.conf`
+- **What:** Full WireGuard config from mullvad.net (Linux, us-nyc-wg-002,
+  no kill switch, no content blocking). Must include `DNS = 10.64.0.1`
+- **Used by:** `qbittorrent` module (VPN-Confinement namespace `mullvad`)
+
+```bash
+sudo sh -c 'umask 077; cat > /var/lib/secrets/mullvad-wg.conf'
+# paste full .conf contents, Enter, Ctrl+D
+```
