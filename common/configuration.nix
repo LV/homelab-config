@@ -6,6 +6,7 @@
 
 {
   imports = [
+    ../modules/system/nix-ld.nix
     ../modules/system/notify.nix
     ../modules/system/tailscale.nix
     ../modules/system/tmux.nix
