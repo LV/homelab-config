@@ -1,14 +1,13 @@
 {
-  lib,
   pkgs,
   ...
 }:
 
 {
   imports = [
+    ../modules/system/claude-code.nix
     ../modules/system/nix-ld.nix
     ../modules/system/notify.nix
-    ../modules/system/plannotator.nix
     ../modules/system/tailscale.nix
     ../modules/system/tmux.nix
   ];
@@ -30,12 +29,6 @@
     optimise.automatic = true;
   };
 
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "claude-code"
-    ];
-
   i18n.defaultLocale = "en_US.UTF-8";
 
   users.users.v = {
@@ -46,7 +39,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKphnA9IH9KO8cKi7ZzX+zZzb74aU7UrVliw8vq4id6w" # phone
     ];
     packages = with pkgs; [
-      claude-code
       git
       gnumake
       lazygit
