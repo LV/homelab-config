@@ -9,6 +9,7 @@ switch:
 
 .PHONY: lint
 lint:
+	nix fmt -- --ci
 	nix flake check
 	nix develop -c statix check .
 	nix develop -c deadnix --fail .

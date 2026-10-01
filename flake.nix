@@ -21,8 +21,9 @@
         ];
       };
 
-      formatter.${system} = pkgs.nixfmt-tree;
-
+      formatter.${system} = pkgs.nixfmt-tree.override {
+        settings.formatter.nixfmt.options = [ "--strict" ];
+      };
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
           nixfmt
