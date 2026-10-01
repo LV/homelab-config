@@ -16,3 +16,7 @@ lint:
 .PHONY: fmt
 fmt:
 	nix fmt
+
+.PHONY: update
+update:
+	nix flake update
