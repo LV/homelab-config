@@ -38,6 +38,7 @@
     ];
     packages = with pkgs; [
       git
+      delta
       gnumake
       lazygit
       tree
