@@ -5,6 +5,7 @@
     ../modules/system/claude-code.nix
     ../modules/system/nix-ld.nix
     ../modules/system/notify.nix
+    ../modules/system/pi.nix
     ../modules/system/tailscale.nix
     ../modules/system/tmux.nix
   ];

@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
+    pi = {
+      url = "github:earendil-works/pi/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-darwin-x64.follows = "nixpkgs";
+    };
   };
 
   outputs =
