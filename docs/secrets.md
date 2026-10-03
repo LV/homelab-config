@@ -41,7 +41,7 @@ Keep the single quotes: the hash contains `$` characters.
 
 - **Path:** `~/.config/ntfy/token` (user `v`)
 - **What:** the ntfy access token from `/var/lib/secrets/ntfy.env`
-- **Used by:** the `notify` command and `plannotator-open` (`claude-code` module)
+- **Used by:** the `notify` command
 
 ```bash
 mkdir -p ~/.config/ntfy

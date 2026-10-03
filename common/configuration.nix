@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../modules/system/claude-code.nix
     ../modules/system/nix-ld.nix
     ../modules/system/notify.nix
     ../modules/system/pi.nix
