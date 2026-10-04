@@ -39,6 +39,7 @@
       git
       delta
       gnumake
+      glow
       lazygit
       tree
     ];
