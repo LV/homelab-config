@@ -1,9 +1,7 @@
 _:
 
 {
-  # Support for tools that install themselves (e.g. Claude Code): nix-ld
-  # runs their prebuilt generic-Linux binaries, and ~/.local/bin, where
-  # such installers usually put them, goes on PATH.
+  # Run prebuilt generic-Linux binaries, such as the Claude Code installer.
+  # Each user's Home Manager configuration handles ~/.local/bin on PATH.
   programs.nix-ld.enable = true;
-  environment.localBinInPath = true;
 }

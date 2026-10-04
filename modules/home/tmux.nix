@@ -6,7 +6,7 @@ _:
     terminal = "tmux-256color";
     historyLimit = 1000000;
     keyMode = "vi";
-    escapeTime = 10; # NixOS defaults to 500ms, which makes Esc feel laggy
+    escapeTime = 10; # Keep Esc responsive.
     extraConfig = ''
       set -ga terminal-overrides ",*256col*:Tc"
       set -g set-clipboard on

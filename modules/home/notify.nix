@@ -22,5 +22,5 @@ let
   };
 in
 {
-  environment.systemPackages = [ notify ];
+  home.packages = [ notify ];
 }

@@ -3,6 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
     pi = {
       url = "github:earendil-works/pi/stable";
@@ -21,8 +25,10 @@
       nixosConfigurations.homelab = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
+          inputs.home-manager.nixosModules.home-manager
           ./common/configuration.nix
           ./hosts/homelab
+          ./users
         ];
       };
 
