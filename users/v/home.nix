@@ -3,6 +3,7 @@
 {
   imports = [
     ../../modules/home/notify.nix
+    ../../modules/home/claude-code.nix
     ../../modules/home/pi.nix
     ../../modules/home/tmux.nix
   ];
