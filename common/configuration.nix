@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../modules/system/nix-ld.nix
     ../modules/system/tailscale.nix
     ../modules/system/utempter.nix
   ];
