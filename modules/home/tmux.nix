@@ -10,6 +10,8 @@ _:
     extraConfig = ''
       set -ga terminal-overrides ",*256col*:Tc"
       set -g set-clipboard on
+      set -g extended-keys on
+      set -g extended-keys-format csi-u
       set -g mouse on
       set -g renumber-windows on
       bind c new-window -c "#{pane_current_path}"
