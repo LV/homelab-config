@@ -3,6 +3,7 @@
 {
   imports = [
     ../modules/system/tailscale.nix
+    ../modules/system/terminfo.nix
     ../modules/system/utempter.nix
   ];
 
