@@ -7,6 +7,11 @@ all: switch
 switch:
 	nixos-rebuild switch --flake $(DIR)/#homelab --sudo --show-trace
 
+# Activate without making it the boot default; a reboot reverts it
+.PHONY: test
+test:
+	nixos-rebuild test --flake $(DIR)/#homelab --sudo --show-trace
+
 .PHONY: lint
 lint:
 	nix fmt -- --ci
