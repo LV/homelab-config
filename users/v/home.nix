@@ -37,4 +37,6 @@
     historyFileSize = null;
     shellOptions = [ ];
   };
+
+  programs.gh.enable = true;
 }
