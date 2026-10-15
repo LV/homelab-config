@@ -18,6 +18,7 @@
       delta
       gnumake
       glow
+      go
       lazygit
       nodejs
       python3
