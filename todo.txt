@@ -1,0 +1,23 @@
+Principles
+- bash must render on the homelab console (TERM=linux: 16 colors, no Nerd Fonts); gate fancy bits on TERM != linux
+- tmux is SSH-only and client-agnostic: no Nerd Font icons or client-specific settings; console tmux is unsupported
+
+- bat: replace cat (home-manager `programs.bat`)
+  - alias cat="bat --paging=never" (as in lv/dotfiles .bashrc)
+  - use --theme=ansi so colors follow the terminal palette (console, ghostty, Termius)
+  - syntax highlighting, line numbers, git change gutter
+  - plain output when piped, so pipelines are unaffected
+  - maybe: bat-extras (batman, batgrep, batdiff), MANPAGER via bat
+- neovim: basic only, NOT the dotfiles dev config (home-manager `programs.neovim`)
+  - defaultEditor, viAlias/vimAlias so nvim replaces vim
+  - tiny inline config: line numbers, OSC 52 clipboard, termguicolors off when TERM=linux
+- ripgrep: add to home.packages
+- fzf: home-manager `programs.fzf` with bash integration
+  - Ctrl-R history, Ctrl-T files, Alt-C cd (Ctrl-R great from phone)
+- copy: clipboard script (replaces dotfiles bin/copy's pbcopy/xclip)
+  - over SSH: OSC 52 -> printf '\e]52;c;%s\a' "$(base64 -w0)"; lands on the client's clipboard (Ghostty, Termius)
+  - OSC 52 is a client-terminal feature, not tmux: works over plain SSH; tmux forwards it via `set-clipboard on` (already set)
+  - on the homelab console (no clipboard): also save to a file, e.g. ~/.local/state/clipboard, so `cat some-file | copy` works without tmux
+  - pasta: print that saved file, so copy/paste works on the console too
+  - strip trailing newline like the dotfiles version; package with writeShellApplication like modules/home/notify.nix
+  - test: Ghostty on MacBook, Termius on phone, both attached at once, large payloads, console without tmux
