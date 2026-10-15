@@ -7,6 +7,7 @@
     settings = {
       tui = "fullscreen";
       theme = "dark";
+      permissions.defaultMode = "plan";
       attribution = {
         commit = "";
         pr = "";
