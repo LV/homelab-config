@@ -18,6 +18,8 @@
       gnumake
       glow
       lazygit
+      nodejs
+      python3
       tree
     ];
 
