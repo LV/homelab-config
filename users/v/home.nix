@@ -6,6 +6,7 @@
     ../../modules/home/claude-code.nix
     ../../modules/home/pi.nix
     ../../modules/home/tmux.nix
+    ../../modules/home/neovim.nix
   ];
 
   home = {
@@ -26,6 +27,7 @@
     shellAliases = {
       gg = "lazygit";
       t = "tmux";
+      v = "nvim";
     };
     sessionPath = [ "$HOME/.local/bin" ];
   };
