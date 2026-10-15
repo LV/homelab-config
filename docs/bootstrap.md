@@ -22,9 +22,24 @@ curl -fsSL https://claude.ai/install.sh | bash
 claude   # sign in on first run
 ```
 
+## GitHub CLI
+
+- **Installed by:** Home Manager (`programs.gh`)
+- **Auth:** `~/.config/gh/hosts.yml`, not managed by Nix
+
+```bash
+gh auth login   # GitHub.com → SSH → skip key upload → web browser
+```
+
+No browser on the host: open https://github.com/login/device elsewhere and
+enter the one-time code. A closing `config.yml: read-only file system` error is
+expected: Home Manager owns that file, and the login is still saved. Set `gh`
+options in `programs.gh.settings`, not with `gh config set`.
+
 ## Verify
 
 ```bash
 which claude   # in ~/.local/bin
 claude --version
+gh auth status
 ```
