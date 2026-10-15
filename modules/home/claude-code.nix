@@ -7,6 +7,11 @@
     settings = {
       tui = "fullscreen";
       theme = "dark";
+      attribution = {
+        commit = "";
+        pr = "";
+        sessionUrl = false;
+      };
     };
   };
   # The binary lives in the read-only Nix store; updates come from `nix flake update`.
