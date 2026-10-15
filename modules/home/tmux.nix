@@ -7,6 +7,8 @@ _:
     historyLimit = 1000000;
     keyMode = "vi";
     escapeTime = 10; # Keep Esc responsive.
+    baseIndex = 1;
+    focusEvents = true;
     extraConfig = ''
       set -ga terminal-overrides ",*256col*:Tc"
       set -g set-clipboard on
