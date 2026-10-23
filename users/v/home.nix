@@ -41,6 +41,12 @@
     historySize = null;
     historyFileSize = null;
     shellOptions = [ ];
+    initExtra = ''
+      mkcdir () {
+          mkdir -p -- "$1" &&
+             cd -P -- "$1"
+      }
+    '';
   };
 
   programs.gh.enable = true;
