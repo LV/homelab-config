@@ -4,6 +4,7 @@
   imports = [
     ../../modules/home/notify.nix
     ../../modules/home/claude-code.nix
+    ../../modules/home/codex.nix
     ../../modules/home/pi.nix
     ../../modules/home/tmux.nix
     ../../modules/home/neovim.nix
