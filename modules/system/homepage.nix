@@ -31,30 +31,35 @@
             Jellyfin = {
               href = "http://homelab:8096";
               icon = "jellyfin.png";
+              description = "Media server";
             };
           }
           {
             Sonarr = {
               href = "http://homelab:8989";
               icon = "sonarr.png";
+              description = "TV shows";
             };
           }
           {
             Radarr = {
               href = "http://homelab:7878";
               icon = "radarr.png";
+              description = "Movies";
             };
           }
           {
             Prowlarr = {
               href = "http://homelab:9696";
               icon = "prowlarr.png";
+              description = "Indexer manager";
             };
           }
           {
             qBittorrent = {
               href = "http://homelab:8090";
               icon = "qbittorrent.png";
+              description = "Torrent client";
             };
           }
         ];
@@ -65,12 +70,14 @@
             Forgejo = {
               href = "https://git.luis.vi";
               icon = "forgejo.png";
+              description = "Git hosting";
             };
           }
           {
             ntfy = {
               href = "https://ntfy.luis.vi";
               icon = "ntfy.png";
+              description = "Push notifications";
             };
           }
         ];
