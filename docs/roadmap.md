@@ -12,6 +12,13 @@
       automatic snapshots. Now urgent: server holds irreplaceable data.
       Include: `/home/v` (Obsidian vault), Forgejo, Jellyfin, Sonarr, Radarr,
       Prowlarr, qBittorrent, Syncthing state. Exclude: `/srv/media`
+- [ ] **Homepage dashboard** — one page linking every service, since nobody
+      remembers the ports. `services.homepage-dashboard` (or Glance) behind
+      Caddy. Jellyfin :8096, qBittorrent :8090, Prowlarr :9696, Sonarr :8989,
+      Radarr :7878, Syncthing :8384, Forgejo `git.luis.vi`, ntfy `ntfy.luis.vi`
+- [ ] **Immich** (self-hosted Google Photos) — `services.immich`, iPhone
+      auto-upload, library on its own path under `/srv`. Only after backups:
+      photos are irreplaceable. Add its library + Postgres dump to restic
 
 ## Media
 - [ ] **Indexer access through VPN**
@@ -46,7 +53,7 @@
 
 ## Ideas
 Vaultwarden (after backups), Tailscale exit node, RSS reader (Miniflux),
-Immich, Paperless-ngx, Audiobookshelf, Radicale, code-server
+Paperless-ngx, Audiobookshelf, Radicale, code-server
 
 ## Done
 - [x] Forgejo at `git.luis.vi` (Caddy, HTTPS, registration off, localhost-only)
