@@ -19,7 +19,7 @@
         resources = {
           cpu = true;
           memory = true;
-          disk = "/srv";
+          disk = "/";
         };
       }
     ];
