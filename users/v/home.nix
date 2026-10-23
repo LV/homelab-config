@@ -23,6 +23,7 @@
       nodejs
       python3
       tree
+      uv
     ];
 
     shellAliases = {
