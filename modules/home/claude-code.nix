@@ -7,6 +7,7 @@
     settings = {
       tui = "fullscreen";
       theme = "dark";
+      modelSettings."claude-opus-5-5".effortLevel = "high";
       permissions.defaultMode = "plan";
       attribution = {
         commit = "";
