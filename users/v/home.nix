@@ -15,7 +15,6 @@
     stateVersion = "26.05";
 
     packages = with pkgs; [
-      git
       delta
       gnumake
       glow
@@ -52,4 +51,9 @@
   };
 
   programs.gh.enable = true;
+
+  programs.git = {
+    enable = true;
+    settings.init.defaultBranch = "main";
+  };
 }
