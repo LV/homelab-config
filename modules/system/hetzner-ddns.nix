@@ -3,12 +3,12 @@
 let
   zone = "luis.vi";
   records = [
-    "git"
     "ntfy"
   ];
 
   updateScript = pkgs.writeShellApplication {
     name = "hetzner-ddns";
+    excludeShellChecks = [ "SC2043" ]; # the record list may hold just one name
     runtimeInputs = [
       pkgs.curl
       pkgs.jq

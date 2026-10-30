@@ -204,5 +204,6 @@ Each application keeps a fixed local port, and ports never conflict on the same 
 
 | Application | Local port | Tailnet port | Tier | Address |
 |-------------|------------|--------------|------|---------|
+| Forgejo     | 3000       | 3000         | 2    | `http://lap-t480-01.gentoo-fahrenheit.ts.net:3000` |
 
 Add a row before deploying each application.

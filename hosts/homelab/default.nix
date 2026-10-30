@@ -24,9 +24,8 @@ _:
     configurationLimit = 10;
   };
 
-  networking.hostName = "homelab";
+  networking.hostName = "lap-t480-01";
   networking.hosts."127.0.0.1" = [
-    "git.luis.vi"
     "ntfy.luis.vi"
   ];
 

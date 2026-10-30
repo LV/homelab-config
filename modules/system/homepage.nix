@@ -8,8 +8,8 @@
     allowedHosts = lib.concatStringsSep "," [
       "localhost:8082"
       "127.0.0.1:8082"
-      "homelab:8082"
-      "homelab.gentoo-fahrenheit.ts.net:8082"
+      "lap-t480-01:8082"
+      "lap-t480-01.gentoo-fahrenheit.ts.net:8082"
       "100.66.148.66:8082"
       "192.168.1.13:8082"
     ];
@@ -29,35 +29,35 @@
         Media = [
           {
             Jellyfin = {
-              href = "http://homelab:8096";
+              href = "http://lap-t480-01:8096";
               icon = "jellyfin.png";
               description = "Media server";
             };
           }
           {
             Sonarr = {
-              href = "http://homelab:8989";
+              href = "http://lap-t480-01:8989";
               icon = "sonarr.png";
               description = "TV shows";
             };
           }
           {
             Radarr = {
-              href = "http://homelab:7878";
+              href = "http://lap-t480-01:7878";
               icon = "radarr.png";
               description = "Movies";
             };
           }
           {
             Prowlarr = {
-              href = "http://homelab:9696";
+              href = "http://lap-t480-01:9696";
               icon = "prowlarr.png";
               description = "Indexer manager";
             };
           }
           {
             qBittorrent = {
-              href = "http://homelab:8090";
+              href = "http://lap-t480-01:8090";
               icon = "qbittorrent.png";
               description = "Torrent client";
             };
@@ -68,7 +68,7 @@
         Tools = [
           {
             Forgejo = {
-              href = "https://git.luis.vi";
+              href = "http://lap-t480-01.gentoo-fahrenheit.ts.net:3000";
               icon = "forgejo.png";
               description = "Git hosting";
             };

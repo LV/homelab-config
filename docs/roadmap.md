@@ -15,7 +15,7 @@
 - [ ] **Homepage dashboard** — one page linking every service, since nobody
       remembers the ports. `services.homepage-dashboard` (or Glance) behind
       Caddy. Jellyfin :8096, qBittorrent :8090, Prowlarr :9696, Sonarr :8989,
-      Radarr :7878, Syncthing :8384, Forgejo `git.luis.vi`, ntfy `ntfy.luis.vi`
+      Radarr :7878, Syncthing :8384, Forgejo :3000, ntfy `ntfy.luis.vi`
 - [ ] **Immich** (self-hosted Google Photos) — `services.immich`, iPhone
       auto-upload, library on its own path under `/srv`. Only after backups:
       photos are irreplaceable. Add its library + Postgres dump to restic
