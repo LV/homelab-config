@@ -28,6 +28,7 @@
     ];
 
     shellAliases = {
+      cat = "bat";
       gg = "lazygit";
       t = "tmux";
       v = "nvim";
@@ -44,11 +45,25 @@
     historyFileSize = null;
     shellOptions = [ ];
     initExtra = ''
+      # Keep bat within the Linux console's 16-color palette.
+      if [[ "$TERM" == linux ]]; then
+        export BAT_THEME=ansi
+      fi
+
       mkcdir () {
           mkdir -p -- "$1" &&
              cd -P -- "$1"
       }
     '';
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "Monokai Extended";
+      paging = "never";
+      style = "default";
+    };
   };
 
   programs.fzf = {
