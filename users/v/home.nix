@@ -51,6 +51,11 @@
     '';
   };
 
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   programs.gh.enable = true;
 
   programs.git = {

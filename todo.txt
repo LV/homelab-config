@@ -10,8 +10,6 @@ Principles
   - maybe: bat-extras (batman, batgrep, batdiff), MANPAGER via bat
 - neovim: basic only, NOT the dotfiles dev config (home-manager `programs.neovim`)
   - OSC 52 clipboard
-- fzf: home-manager `programs.fzf` with bash integration
-  - Ctrl-R history, Ctrl-T files, Alt-C cd (Ctrl-R great from phone)
 - copy: clipboard script (replaces dotfiles bin/copy's pbcopy/xclip)
   - over SSH: OSC 52 -> printf '\e]52;c;%s\a' "$(base64 -w0)"; lands on the client's clipboard (Ghostty, Termius)
   - OSC 52 is a client-terminal feature, not tmux: works over plain SSH; tmux forwards it via `set-clipboard on` (already set)
