@@ -2,9 +2,7 @@
 
 let
   zone = "luis.vi";
-  records = [
-    "ntfy"
-  ];
+  records = [ "ntfy" ];
 
   updateScript = pkgs.writeShellApplication {
     name = "hetzner-ddns";

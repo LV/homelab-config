@@ -25,9 +25,7 @@ _:
   };
 
   networking.hostName = "lap-t480-01";
-  networking.hosts."127.0.0.1" = [
-    "ntfy.luis.vi"
-  ];
+  networking.hosts."127.0.0.1" = [ "ntfy.luis.vi" ];
 
   time.timeZone = "America/New_York";
 
