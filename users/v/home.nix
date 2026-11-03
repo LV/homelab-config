@@ -22,6 +22,7 @@
       lazygit
       nodejs
       python3
+      ripgrep
       tree
       uv
     ];

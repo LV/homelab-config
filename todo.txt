@@ -10,7 +10,6 @@ Principles
   - maybe: bat-extras (batman, batgrep, batdiff), MANPAGER via bat
 - neovim: basic only, NOT the dotfiles dev config (home-manager `programs.neovim`)
   - OSC 52 clipboard
-- ripgrep: add to home.packages
 - fzf: home-manager `programs.fzf` with bash integration
   - Ctrl-R history, Ctrl-T files, Alt-C cd (Ctrl-R great from phone)
 - copy: clipboard script (replaces dotfiles bin/copy's pbcopy/xclip)
