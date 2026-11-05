@@ -166,6 +166,8 @@ tailscale serve --bg --https=3000 http://127.0.0.1:3000
 
 **Tier 3: local only.** Not exposed to the tailnet at all.
 
+**Public.** Outside the tiers: published to the internet through Caddy on the `luis.vi` domain, for services that devices without Tailscale must reach (ntfy).
+
 ### Setting up Tier 1
 
 Only tagged devices can host Tailscale Services, so the first Tier 1 application means tagging `lap-t480-01`. Tagging moves the node's ownership from your user to the tag, so rules covering only your own devices (such as `autogroup:self`) stop applying to it.
@@ -201,15 +203,39 @@ Only tagged devices can host Tailscale Services, so the first Tier 1 application
 
 ### Binding
 
-Every application binds to `127.0.0.1` and is exposed only through `tailscale serve`. Otherwise it also listens on whatever network the laptop is connected to. On NixOS, leave each application's `openFirewall` option off. If you ever run Docker, never use Compose `ports:` entries without a `127.0.0.1:` prefix (`127.0.0.1:8096:8096`): unprefixed entries bind to all interfaces and bypass the NixOS firewall.
+Every application binds to `127.0.0.1` and is exposed only through `tailscale serve`. Otherwise it also listens on whatever network the laptop is connected to. On NixOS, add the port to `homelab.tailscaleServe` (`modules/system/tailscale-serve.nix`) and leave the application's `openFirewall` option off.
+
+An application may instead listen on all interfaces, with `openFirewall` off, only when it can't bind to `127.0.0.1`: it must be reachable from the VPN namespace (Sonarr and Radarr, which Prowlarr calls through the `mullvad-br` bridge), or its listen address is managed inside the application (Jellyfin). The firewall then blocks it on the LAN, and it's reached directly over `tailscale0`, which is trusted. It can't use `tailscale serve`, since Serve would need the same port. Apps in the VPN namespace are reachable only from the sources in its `accessibleFrom` list.
+
+SSH is the one service left open to the LAN on purpose, as the way in if Tailscale breaks. If you ever run Docker, never use Compose `ports:` entries without a `127.0.0.1:` prefix (`127.0.0.1:8096:8096`): unprefixed entries bind to all interfaces and bypass the NixOS firewall.
 
 ### Port registry
 
 Each application keeps a fixed local port, and ports never conflict on the same node. In Tier 2, the tailnet port matches the local port. Tier 1 Tailscale Services use HTTPS on 443. If an application moves to another host, it keeps its local port.
 
-| Application | Local port | Tailnet port | Tier | Address |
-|-------------|------------|--------------|------|---------|
-| Forgejo     | 3000       | 3000         | 2    | `http://lap-t480-01.gentoo-fahrenheit.ts.net:3000` |
-| Grafana     | 3001       | 3001         | 2    | `http://lap-t480-01.gentoo-fahrenheit.ts.net:3001` |
+| Application   | Local port | Tailnet port | Tier   | Address                                            | Notes |
+|---------------|------------|--------------|--------|----------------------------------------------------|-------|
+| ntfy          | 2586       | —            | Public | `https://ntfy.luis.vi`                             | Localhost; published through Caddy on 443 |
+| Forgejo       | 3000       | 3000         | 2      | `http://lap-t480-01.gentoo-fahrenheit.ts.net:3000` | Localhost; `tailscale serve` |
+| Grafana       | 3001       | 3001         | 2      | `http://lap-t480-01.gentoo-fahrenheit.ts.net:3001` | Localhost; `tailscale serve` |
+| Radarr        | 7878       | 7878         | 2      | `http://lap-t480-01.gentoo-fahrenheit.ts.net:7878` | All interfaces, LAN firewalled; also open on `mullvad-br` for Prowlarr |
+| Homepage      | 8082       | 8082         | 2      | `http://lap-t480-01.gentoo-fahrenheit.ts.net:8082` | Localhost; `tailscale serve` |
+| qBittorrent   | 8090       | 8090         | 2      | `http://lap-t480-01.gentoo-fahrenheit.ts.net:8090` | In the Mullvad VPN namespace; reachable from the tailnet only (`accessibleFrom`) |
+| Jellyfin      | 8096       | 8096         | 2      | `http://lap-t480-01.gentoo-fahrenheit.ts.net:8096` | All interfaces, LAN firewalled (listen address is managed in Jellyfin) |
+| Syncthing GUI | 8384       | —            | 3      | `http://127.0.0.1:8384`                            | Localhost only |
+| Sonarr        | 8989       | 8989         | 2      | `http://lap-t480-01.gentoo-fahrenheit.ts.net:8989` | All interfaces, LAN firewalled; also open on `mullvad-br` for Prowlarr |
+| Prowlarr      | 9696       | 9696         | 2      | `http://lap-t480-01.gentoo-fahrenheit.ts.net:9696` | In the Mullvad VPN namespace; reachable from the tailnet only |
 
 Add a row before deploying each application.
+
+System ports that aren't applications, listed so new ports never conflict with them:
+
+| Port    | Protocol           | Service                   | Exposure |
+|---------|--------------------|---------------------------|----------|
+| 22      | TCP                | SSH                       | All interfaces (LAN on purpose) |
+| 80, 443 | TCP (443 also UDP) | Caddy                     | Internet (ntfy) |
+| 2019    | TCP                | Caddy admin API           | Localhost |
+| 7359    | UDP                | Jellyfin server discovery | Firewalled |
+| 21027   | UDP                | Syncthing local discovery | LAN |
+| 22000   | TCP, UDP           | Syncthing sync            | All interfaces |
+| 41641   | UDP                | Tailscale (WireGuard)     | All interfaces |

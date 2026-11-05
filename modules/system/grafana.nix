@@ -1,10 +1,9 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   port = 3001;
   host = "lap-t480-01.gentoo-fahrenheit.ts.net";
   secretsDir = "/var/lib/secrets";
-  tailscale = "${config.services.tailscale.package}/bin/tailscale";
 
   # Creates each secret once; never overwrite the secret key, or Grafana
   # can no longer decrypt what it stored with the old one
@@ -51,6 +50,8 @@ in
     };
   };
 
+  homelab.tailscaleServe.grafana = port;
+
   systemd.services = {
     grafana-secrets = {
       description = "Generate Grafana's admin password and secret key";
@@ -67,26 +68,6 @@ in
         "admin-password:${secretsDir}/grafana-admin-password"
         "secret-key:${secretsDir}/grafana-secret-key"
       ];
-    };
-
-    # Adds only this port's mapping; other apps' Serve mappings are left alone
-    grafana-tailscale-serve = {
-      description = "Expose Grafana on the tailnet with Tailscale Serve";
-      after = [
-        "tailscaled.service"
-        "grafana.service"
-      ];
-      wants = [ "tailscaled.service" ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = true;
-        ExecStartPre = "${tailscale} wait";
-        ExecStart = "${tailscale} serve --bg --yes --http=${toString port} http://127.0.0.1:${toString port}";
-        ExecStop = "${tailscale} serve --http=${toString port} off";
-        Restart = "on-failure";
-        RestartSec = "10s";
-      };
     };
   };
 }

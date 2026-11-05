@@ -17,6 +17,7 @@ _:
     ../../modules/system/radarr.nix
     ../../modules/system/sonarr.nix
     ../../modules/system/syncthing.nix
+    ../../modules/system/tailscale-serve.nix
   ];
 
   boot.loader.grub = {

@@ -1,17 +1,22 @@
 { lib, ... }:
 
+let
+  host = "lap-t480-01.gentoo-fahrenheit.ts.net";
+in
 {
+  homelab.tailscaleServe.homepage = 8082;
+
+  # Next.js reads its listen address from HOSTNAME
+  systemd.services.homepage-dashboard.environment.HOSTNAME = "127.0.0.1";
+
   services.homepage-dashboard = {
     enable = true;
-    openFirewall = true; # home network; Tailscale is already trusted
+    openFirewall = false; # exposed only through tailscale serve
     # Homepage rejects requests whose Host header isn't listed here
     allowedHosts = lib.concatStringsSep "," [
       "localhost:8082"
       "127.0.0.1:8082"
-      "lap-t480-01:8082"
-      "lap-t480-01.gentoo-fahrenheit.ts.net:8082"
-      "100.66.148.66:8082"
-      "192.168.1.13:8082"
+      "${host}:8082"
     ];
     settings.title = "homelab";
     widgets = [
@@ -23,41 +28,41 @@
         };
       }
     ];
-    # Links use the Tailscale MagicDNS name, so they work at home and away
+    # Links use the full Tailscale name, so they work at home and away
     services = [
       {
         Media = [
           {
             Jellyfin = {
-              href = "http://lap-t480-01:8096";
+              href = "http://${host}:8096";
               icon = "jellyfin.png";
               description = "Media server";
             };
           }
           {
             Sonarr = {
-              href = "http://lap-t480-01:8989";
+              href = "http://${host}:8989";
               icon = "sonarr.png";
               description = "TV shows";
             };
           }
           {
             Radarr = {
-              href = "http://lap-t480-01:7878";
+              href = "http://${host}:7878";
               icon = "radarr.png";
               description = "Movies";
             };
           }
           {
             Prowlarr = {
-              href = "http://lap-t480-01:9696";
+              href = "http://${host}:9696";
               icon = "prowlarr.png";
               description = "Indexer manager";
             };
           }
           {
             qBittorrent = {
-              href = "http://lap-t480-01:8090";
+              href = "http://${host}:8090";
               icon = "qbittorrent.png";
               description = "Torrent client";
             };
@@ -68,14 +73,14 @@
         Tools = [
           {
             Forgejo = {
-              href = "http://lap-t480-01.gentoo-fahrenheit.ts.net:3000";
+              href = "http://${host}:3000";
               icon = "forgejo.png";
               description = "Git hosting";
             };
           }
           {
             Grafana = {
-              href = "http://lap-t480-01.gentoo-fahrenheit.ts.net:3001";
+              href = "http://${host}:3001";
               icon = "grafana.png";
               description = "Dashboards";
             };
