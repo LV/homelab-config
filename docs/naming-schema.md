@@ -229,7 +229,7 @@ Each application keeps a fixed local port, and ports never conflict on the same 
 | Homepage      | 8082       | 8082         | 2      | `https://lap-t480-01.gentoo-fahrenheit.ts.net:8082` | Serve → `127.0.0.1` |
 | qBittorrent   | 8090       | 8090         | 2      | `https://lap-t480-01.gentoo-fahrenheit.ts.net:8090` | Serve → `192.168.15.1` (Mullvad VPN namespace) |
 | Jellyfin      | 8096       | 8096         | 2      | `https://lap-t480-01.gentoo-fahrenheit.ts.net:8096` | Serve → `127.0.0.1` (bind address set in Jellyfin's UI) |
-| Syncthing GUI | 8384       | —            | 3      | `http://127.0.0.1:8384`                             | Localhost only |
+| Syncthing GUI | 8384       | 8384         | 2      | `https://lap-t480-01.gentoo-fahrenheit.ts.net:8384` | Serve → `127.0.0.1`; GUI password in `/var/lib/secrets/syncthing-gui-password`, set by hand |
 | Sonarr        | 8989       | 8989         | 2      | `https://lap-t480-01.gentoo-fahrenheit.ts.net:8989` | Serve → `192.168.15.5` (bridge, for Prowlarr) |
 | Prowlarr      | 9696       | 9696         | 2      | `https://lap-t480-01.gentoo-fahrenheit.ts.net:9696` | Serve → `192.168.15.1` (Mullvad VPN namespace) |
 

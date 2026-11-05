@@ -86,6 +86,13 @@ in
             };
           }
           {
+            Syncthing = {
+              href = "https://${host}:8384";
+              icon = "syncthing.png";
+              description = "File sync";
+            };
+          }
+          {
             ntfy = {
               href = "https://ntfy.luis.vi";
               icon = "ntfy.png";
