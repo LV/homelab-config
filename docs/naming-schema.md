@@ -36,6 +36,7 @@ A fixed three-letter code. The class also says how to read the model field.
 | `sbc` | Single-board computer (e.g. Raspberry Pi)                                 | Hardware          |
 | `phn` | Physical phone                                                            | Hardware          |
 | `tab` | Physical tablet                                                           | Hardware          |
+| `tlv` | Physical television with a built-in OS (smart TV)                         | Hardware          |
 | `vrt` | Virtual machine                                                           | OS family         |
 | `ctr` | Container with its own tailnet identity                                   | Application       |
 
@@ -84,6 +85,8 @@ For containers, each number is one persistent logical instance. Its Tailscale st
 |--------------|-------|-------------------------------------------|
 | `mbp16m1pro` | `lap` | Apple MacBook Pro (16-inch, 2021), M1 Pro |
 | `t480`       | `lap` | Lenovo ThinkPad T480                      |
+| `ip15promax` | `phn` | Apple iPhone 15 Pro Max                   |
+| `xr75x93l`   | `tlv` | Sony BRAVIA XR X93L (75-inch, 2023)       |
 | `nixos`      | `vrt` | NixOS                                     |
 | `debian`     | `vrt` | Debian                                    |
 | `win`        | `vrt` | Windows                                   |
@@ -92,10 +95,12 @@ For containers, each number is one persistent logical instance. Its Tailscale st
 
 Inventory metadata lives here, not in hostnames.
 
-| Hostname            | Device                           | OS    | Hosting | Tagged | Status |
-|---------------------|----------------------------------|-------|---------|--------|--------|
-| `lap-mbp16m1pro-01` | MacBook Pro 16-inch 2021, M1 Pro | macOS | Mobile  | No     | Active |
-| `lap-t480-01`       | ThinkPad T480, Libreboot         | NixOS | Home    | No (planned before first Tailscale Service) | Active |
+| Hostname            | Device                           | OS        | Hosting | Tagged | Status |
+|---------------------|----------------------------------|-----------|---------|--------|--------|
+| `lap-mbp16m1pro-01` | MacBook Pro 16-inch 2021, M1 Pro | macOS     | Mobile  | No     | Active |
+| `lap-t480-01`       | ThinkPad T480, Libreboot         | NixOS     | Home    | No (planned before first Tailscale Service) | Active |
+| `phn-ip15promax-01` | iPhone 15 Pro Max                | iOS       | Mobile  | No     | Active |
+| `tlv-xr75x93l-01`   | Sony BRAVIA XR X93L, 75-inch     | Google TV | Home    | No     | Active |
 
 ## Reserved names
 
