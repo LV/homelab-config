@@ -34,35 +34,35 @@ in
         Media = [
           {
             Jellyfin = {
-              href = "http://${host}:8096";
+              href = "https://${host}:8096";
               icon = "jellyfin.png";
               description = "Media server";
             };
           }
           {
             Sonarr = {
-              href = "http://${host}:8989";
+              href = "https://${host}:8989";
               icon = "sonarr.png";
               description = "TV shows";
             };
           }
           {
             Radarr = {
-              href = "http://${host}:7878";
+              href = "https://${host}:7878";
               icon = "radarr.png";
               description = "Movies";
             };
           }
           {
             Prowlarr = {
-              href = "http://${host}:9696";
+              href = "https://${host}:9696";
               icon = "prowlarr.png";
               description = "Indexer manager";
             };
           }
           {
             qBittorrent = {
-              href = "http://${host}:8090";
+              href = "https://${host}:8090";
               icon = "qbittorrent.png";
               description = "Torrent client";
             };
@@ -73,14 +73,14 @@ in
         Tools = [
           {
             Forgejo = {
-              href = "http://${host}:3000";
+              href = "https://${host}:3000";
               icon = "forgejo.png";
               description = "Git hosting";
             };
           }
           {
             Grafana = {
-              href = "http://${host}:3001";
+              href = "https://${host}:3001";
               icon = "grafana.png";
               description = "Dashboards";
             };

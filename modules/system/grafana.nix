@@ -31,11 +31,12 @@ in
         http_addr = "127.0.0.1"; # exposed only through tailscale serve
         http_port = port;
         domain = host;
-        root_url = "http://${host}:${toString port}/";
+        root_url = "https://${host}:${toString port}/";
       };
       security = {
         # Applied only when Grafana first creates the admin user
         admin_user = "v";
+        cookie_secure = true;
         admin_password = "$__file{/run/credentials/grafana.service/admin-password}";
         secret_key = "$__file{/run/credentials/grafana.service/secret-key}";
       };

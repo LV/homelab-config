@@ -8,15 +8,24 @@
     wireguardConfigFile = "/var/lib/secrets/mullvad-wg.conf";
     namespaceAddress = "192.168.15.1";
     bridgeAddress = "192.168.15.5";
-    accessibleFrom = [
-      "100.64.0.0/10" # Tailscale
-    ];
+    # No outside sources: the host reaches the namespace over the bridge, and
+    # the tailnet goes through Serve
+    accessibleFrom = [ ];
+    # A mapping is the only way to open its `to` port in the namespace's own
+    # firewall, which the host (Serve, Sonarr, Radarr) needs. Its `from` port
+    # is deliberately unused: a host-side forward on 8090 would catch
+    # tailnet traffic before Serve sees it
     portMappings = [
       {
-        from = 8090;
+        from = 18090;
         to = 8090;
       }
     ];
+  };
+
+  homelab.tailscaleServe.qbittorrent = {
+    port = 8090;
+    target = "http://192.168.15.1:8090";
   };
 
   services.qbittorrent = {

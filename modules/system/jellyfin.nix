@@ -1,13 +1,11 @@
 { pkgs, ... }:
 
 {
-  services.jellyfin = {
-    enable = true;
-    # Closed to the LAN; reached directly over tailscale0, which is trusted.
-    # Its listen address is managed in Jellyfin's UI, so it can't be pinned
-    # to 127.0.0.1 here for tailscale serve.
-    openFirewall = false;
-  };
+  # Jellyfin's listen address lives in its UI (Dashboard > Networking), not
+  # here: it must be set to 127.0.0.1, or Serve can't take port 8096
+  homelab.tailscaleServe.jellyfin = 8096;
+
+  services.jellyfin.enable = true;
 
   users.users.jellyfin.extraGroups = [
     "media"
