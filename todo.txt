@@ -12,3 +12,8 @@ Principles
   - pasta: print that saved file, so copy/paste works on the console too
   - strip trailing newline like the dotfiles version; package with writeShellApplication like modules/home/notify.nix
   - test: Ghostty on MacBook, Termius on phone, both attached at once, large payloads, console without tmux
+
+- Some endpoint for me to constantly monitor my AI credit usage. Like a healthcheck `/status` check on Codex and Claude.
+  - Dashboards are visible in some Open Sourced service, like a Grafana dashboard
+  - Also ensure 4 hour windows reset consistently. ChatGPT and Claude have 4 hour windows that only start from the moment a new prompt is kicked off. So I need a script that once usage refreshes, it sends a very simple request to tell the model to do something extremely minimal, like "Say Hello" "Hello!" that will automatically begin the 4 hour limit countdown. That way if I use it a ton on hour 3, it resets much much sooner.
+    - I currently do this manually.
