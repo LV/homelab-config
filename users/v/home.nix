@@ -3,6 +3,7 @@
 {
   imports = [
     ../../modules/home/notify.nix
+    ../../modules/home/clipboard.nix
     ../../modules/home/claude-code.nix
     ../../modules/home/codex.nix
     ../../modules/home/pi.nix

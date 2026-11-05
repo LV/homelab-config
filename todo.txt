@@ -3,15 +3,9 @@ Principles
 - tmux is SSH-only and client-agnostic: no Nerd Font icons or client-specific settings; console tmux is unsupported
 
 - maybe: bat-extras (batman, batgrep, batdiff), MANPAGER via bat
-- neovim: basic only, NOT the dotfiles dev config (home-manager `programs.neovim`)
-  - OSC 52 clipboard
-- copy: clipboard script (replaces dotfiles bin/copy's pbcopy/xclip)
-  - over SSH: OSC 52 -> printf '\e]52;c;%s\a' "$(base64 -w0)"; lands on the client's clipboard (Ghostty, Termius)
-  - OSC 52 is a client-terminal feature, not tmux: works over plain SSH; tmux forwards it via `set-clipboard on` (already set)
-  - on the homelab console (no clipboard): also save to a file, e.g. ~/.local/state/clipboard, so `cat some-file | copy` works without tmux
-  - pasta: print that saved file, so copy/paste works on the console too
-  - strip trailing newline like the dotfiles version; package with writeShellApplication like modules/home/notify.nix
-  - test: Ghostty on MacBook, Termius on phone, both attached at once, large payloads, console without tmux
+- clipboard: manual client verification pending (docs/clipboard.md)
+  - Ghostty on MacBook and Termius on phone: plain SSH and tmux
+  - both attached at once, large payloads, console without tmux
 
 - Some endpoint for me to constantly monitor my AI credit usage. Like a healthcheck `/status` check on Codex and Claude.
   - Dashboards are visible in some Open Sourced service, like a Grafana dashboard
