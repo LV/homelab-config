@@ -74,6 +74,13 @@
             };
           }
           {
+            Grafana = {
+              href = "http://lap-t480-01.gentoo-fahrenheit.ts.net:3001";
+              icon = "grafana.png";
+              description = "Dashboards";
+            };
+          }
+          {
             ntfy = {
               href = "https://ntfy.luis.vi";
               icon = "ntfy.png";

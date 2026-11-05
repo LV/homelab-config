@@ -5,6 +5,7 @@ _:
     ./hardware-configuration.nix
     ../../modules/system/caddy.nix
     ../../modules/system/forgejo.nix
+    ../../modules/system/grafana.nix
     ../../modules/system/hetzner-ddns.nix
     ../../modules/system/homepage.nix
     ../../modules/system/jellyfin.nix

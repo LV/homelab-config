@@ -60,3 +60,22 @@ mkdir -p ~/.config/ntfy
 sudo sh -c 'umask 077; cat > /var/lib/secrets/mullvad-wg.conf'
 # paste full .conf contents, Enter, Ctrl+D
 ```
+
+## Grafana
+
+- **Paths:** `/var/lib/secrets/grafana-admin-password`, `/var/lib/secrets/grafana-secret-key`
+- **What:** the initial password for Grafana's admin user (`v`), and the key Grafana
+  encrypts stored credentials with
+- **Used by:** `grafana` module (passed to `grafana.service` as systemd credentials)
+
+Both are generated automatically by `grafana-secrets.service` the first time
+Grafana starts; nothing to create by hand. Existing files are never overwritten.
+
+```bash
+sudo cat /var/lib/secrets/grafana-admin-password   # log in as v
+```
+
+The password file is only the **initial** password: Grafana applies it once,
+when it creates the admin user. After changing the password in the UI, the
+file is stale. Never change or delete the secret key, or Grafana can no longer
+decrypt data it stored. Back up both files together with `/var/lib/grafana`.
