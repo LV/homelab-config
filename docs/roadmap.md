@@ -23,7 +23,7 @@
       Prowlarr, qBittorrent, Syncthing, Grafana, ntfy (user DB) state, and
       `/var/lib/secrets` (Grafana's secret key can't be regenerated).
       Exclude: `/srv/media`
-- [ ] **AI usage monitoring** — Grafana has no data source yet
+- [ ] **AI usage monitoring**
   - Collect Claude and Codex credit usage (a `/status`-style check) into
     Prometheus; graph it in Grafana
   - Window starter: once usage refreshes, send a minimal prompt ("Say
