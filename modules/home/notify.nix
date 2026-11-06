@@ -17,7 +17,7 @@ let
         -H "Authorization: Bearer $(< "$token_file")" \
         -H "Title: $HOSTNAME" \
         -d "$message" \
-        https://ntfy.luis.vi/homelab > /dev/null
+        https://lap-t480-01.gentoo-fahrenheit.ts.net:2586/homelab > /dev/null
     '';
   };
 in

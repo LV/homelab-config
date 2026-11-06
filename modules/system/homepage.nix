@@ -94,7 +94,7 @@ in
           }
           {
             ntfy = {
-              href = "https://ntfy.luis.vi";
+              href = "https://${host}:2586";
               icon = "ntfy.png";
               description = "Push notifications";
             };

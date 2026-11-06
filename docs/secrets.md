@@ -2,18 +2,6 @@
 
 _Stored on the server only, never in this repo._
 
-## Hetzner DNS token
-
-- **Path:** `/var/lib/secrets/hetzner-dns-token`
-- **What:** Hetzner Console API token (Read & Write), from the project containing the `luis.vi` zone
-- **Used by:** `hetzner-ddns` module
-
-```bash
-sudo install -d -m 700 /var/lib/secrets
-sudo sh -c 'umask 077; cat > /var/lib/secrets/hetzner-dns-token'
-# paste token, Enter, Ctrl+D
-```
-
 ## ntfy
 
 ### ntfy users and tokens
@@ -26,6 +14,7 @@ sudo sh -c 'umask 077; cat > /var/lib/secrets/hetzner-dns-token'
 ntfy user hash        # prompts for a password, prints a $2a$... hash
 ntfy token generate   # prints a random tk_... token
 
+sudo install -d -m 700 /var/lib/secrets
 sudo sh -c 'umask 077; cat > /var/lib/secrets/ntfy.env'
 # paste the lines below with real values, Enter, Ctrl+D
 ```

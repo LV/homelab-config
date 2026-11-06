@@ -166,7 +166,7 @@ tailscale serve --bg --https=3000 http://127.0.0.1:3000
 
 **Tier 3: local only.** Not exposed to the tailnet at all.
 
-**Public.** Outside the tiers: published to the internet through Caddy on the `luis.vi` domain, for services that devices without Tailscale must reach (ntfy).
+**Public.** Outside the tiers: published to the internet through Caddy on the `luis.vi` domain, for services that devices without Tailscale must reach. Nothing is public right now.
 
 ### Setting up Tier 1
 
@@ -222,7 +222,7 @@ Each application keeps a fixed local port, and ports never conflict on the same 
 
 | Application   | Local port | Tailnet port | Tier   | Address                                             | Notes |
 |---------------|------------|--------------|--------|-----------------------------------------------------|-------|
-| ntfy          | 2586       | —            | Public | `https://ntfy.luis.vi`                              | Localhost; published through Caddy on 443 |
+| ntfy          | 2586       | 2586         | 2      | `https://lap-t480-01.gentoo-fahrenheit.ts.net:2586` | Serve → `127.0.0.1` |
 | Forgejo       | 3000       | 3000         | 2      | `https://lap-t480-01.gentoo-fahrenheit.ts.net:3000` | Serve → `127.0.0.1` |
 | Grafana       | 3001       | 3001         | 2      | `https://lap-t480-01.gentoo-fahrenheit.ts.net:3001` | Serve → `127.0.0.1` |
 | Radarr        | 7878       | 7878         | 2      | `https://lap-t480-01.gentoo-fahrenheit.ts.net:7878` | Serve → `192.168.15.5` (bridge, for Prowlarr) |
@@ -240,8 +240,6 @@ System ports that aren't applications, listed so new ports never conflict with t
 | Port    | Protocol           | Service                                  | Exposure |
 |---------|--------------------|------------------------------------------|----------|
 | 22      | TCP                | SSH                                      | All interfaces (LAN on purpose) |
-| 80, 443 | TCP (443 also UDP) | Caddy                                    | Internet (ntfy) |
-| 2019    | TCP                | Caddy admin API                          | Localhost |
 | 7359    | UDP                | Jellyfin server discovery                | Firewalled |
 | 18090   | TCP                | VPN namespace forward → qBittorrent 8090 | Unused on purpose; only opens 8090 in the namespace firewall |
 | 19696   | TCP                | VPN namespace forward → Prowlarr 9696    | Unused on purpose; only opens 9696 in the namespace firewall |
