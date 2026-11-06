@@ -1,0 +1,12 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: native
+    steps:
+      - uses: actions/checkout@v4
+      - run: nix build --no-link .#nixosConfigurations.homelab.config.system.build.toplevel
