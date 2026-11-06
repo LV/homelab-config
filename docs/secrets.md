@@ -38,6 +38,21 @@ mkdir -p ~/.config/ntfy
 # paste token, Enter
 ```
 
+## Forgejo runner
+
+- **Path:** `/var/lib/secrets/forgejo-runner-token`
+- **What:** the runner's token, alone on one line (no `TOKEN=`)
+- **Used by:** `forgejo-runner` module (systemd credential `token`)
+
+In Forgejo: Site administration → Actions → Runners → Create new runner
+(name `lap-t480-01`). It shows a UUID and a token. The UUID goes in
+`modules/system/forgejo-runner.nix` (not secret); the token goes here:
+
+```bash
+sudo sh -c 'umask 077; cat > /var/lib/secrets/forgejo-runner-token'
+# paste token, Enter, Ctrl+D
+```
+
 ## Mullvad WireGuard config
 
 - **Path:** `/var/lib/secrets/mullvad-wg.conf`

@@ -4,6 +4,7 @@ _:
   imports = [
     ./hardware-configuration.nix
     ../../modules/system/forgejo.nix
+    ../../modules/system/forgejo-runner.nix
     ../../modules/system/grafana.nix
     ../../modules/system/homepage.nix
     ../../modules/system/jellyfin.nix
