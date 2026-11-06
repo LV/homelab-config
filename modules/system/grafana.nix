@@ -22,6 +22,41 @@ let
       done
     '';
   };
+
+  # Landing page: every dashboard, grouped by folder. Data sources and
+  # dashboards are provisioned by the modules that own the data
+  homeDashboard = pkgs.writeText "grafana-home.json" (
+    builtins.toJSON {
+      title = "Home";
+      uid = "home";
+      editable = false;
+      timepicker.hidden = true;
+      panels = [
+        {
+          id = 1;
+          type = "dashlist";
+          title = "Dashboards";
+          gridPos = {
+            x = 0;
+            y = 0;
+            w = 24;
+            h = 20;
+          };
+          options = {
+            showSearch = true;
+            showHeadings = true;
+            showStarred = true;
+            showRecentlyViewed = false;
+            includeVars = false;
+            keepTime = false;
+            maxItems = 100;
+            query = "";
+            tags = [ ];
+          };
+        }
+      ];
+    }
+  );
 in
 {
   services.grafana = {
@@ -48,7 +83,9 @@ in
         check_for_plugin_updates = false;
       };
       news.news_feed_enabled = false;
+      dashboards.default_home_dashboard_path = "${homeDashboard}";
     };
+    provision.enable = true;
   };
 
   homelab.tailscaleServe.grafana = port;

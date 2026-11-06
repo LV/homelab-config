@@ -9,6 +9,7 @@ _:
     ../../modules/system/jellyfin.nix
     ../../modules/system/lid.nix
     ../../modules/system/media.nix
+    ../../modules/system/metrics/host.nix
     ../../modules/system/ntfy.nix
     ../../modules/system/prometheus.nix
     ../../modules/system/prowlarr.nix
