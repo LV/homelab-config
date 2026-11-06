@@ -49,8 +49,6 @@
 ## Parked
 - [ ] **Receipt printer** — `lp` group, udev rule for `/dev/receipt_printer`,
       package Perl script with `writePerlBin`. No CUPS needed
-- [ ] **OpenClaw** — isolated (container/microVM/separate machine), gateway
-      private, vetted skills only. Only after backups and sops-nix
 
 ## Later (once reliability matters)
 - [ ] SSD health monitoring (`services.smartd`)
@@ -58,7 +56,6 @@
 - [ ] Forgejo Actions runner (lint/build this repo on push)
 - [ ] Automated `flake.lock` update PRs
 - [ ] GitOps deployment (comin)
-- [ ] fail2ban/CrowdSec — only if something goes public again
 - [ ] sops-nix for secrets
 
 ## Ideas
