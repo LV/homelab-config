@@ -53,7 +53,6 @@
 ## Later (once reliability matters)
 - [ ] SSD health monitoring (`services.smartd`)
 - [ ] Clean shutdown on low battery
-- [ ] CI workflow for this repo (lint/build on push)
 - [ ] Automated `flake.lock` update PRs
 - [ ] GitOps deployment (comin)
 - [ ] sops-nix for secrets
