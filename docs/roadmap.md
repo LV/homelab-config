@@ -1,7 +1,16 @@
 # Roadmap
 
+## Principles
+- bash must render on the homelab console (TERM=linux: 16 colors, no Nerd
+  Fonts); gate fancy bits on TERM != linux
+- tmux is SSH-only and client-agnostic: no Nerd Font icons or
+  client-specific settings; console tmux is unsupported
+
 ## Quick wins
 - [ ] Enable 2FA on Forgejo admin account
+- [ ] **Clipboard client checks** (`docs/clipboard.md`) — Ghostty on MacBook
+      and Termius on phone, plain SSH and tmux; both attached at once, large
+      payloads, console without tmux
 
 ## Next up
 - [ ] **End-to-end *arr test** — add *Night of the Living Dead* (1968) in Radarr
@@ -11,11 +20,15 @@
 - [ ] **Backups** — Hetzner Storage Box BX11 (€3.20/mo) + restic; enable
       automatic snapshots. Now urgent: server holds irreplaceable data.
       Include: `/home/v` (Obsidian vault), Forgejo, Jellyfin, Sonarr, Radarr,
-      Prowlarr, qBittorrent, Syncthing state. Exclude: `/srv/media`
-- [ ] **Homepage dashboard** — one page linking every service, since nobody
-      remembers the ports. `services.homepage-dashboard` (or Glance) behind
-      Caddy. Jellyfin :8096, qBittorrent :8090, Prowlarr :9696, Sonarr :8989,
-      Radarr :7878, Syncthing :8384, Forgejo :3000, ntfy :2586
+      Prowlarr, qBittorrent, Syncthing, Grafana, ntfy (user DB) state, and
+      `/var/lib/secrets` (Grafana's secret key can't be regenerated).
+      Exclude: `/srv/media`
+- [ ] **AI usage monitoring** — Grafana has no data source yet
+  - Collect Claude and Codex credit usage (a `/status`-style check) into
+    Prometheus; graph it in Grafana
+  - Window starter: once usage refreshes, send a minimal prompt ("Say
+    hello") so the 4-hour window starts right away and resets sooner
+    after heavy use. Currently done by hand
 - [ ] **Immich** (self-hosted Google Photos) — `services.immich`, iPhone
       auto-upload, library on its own path under `/srv`. Only after backups:
       photos are irreplaceable. Add its library + Postgres dump to restic
@@ -45,25 +58,13 @@
 - [ ] Forgejo Actions runner (lint/build this repo on push)
 - [ ] Automated `flake.lock` update PRs
 - [ ] GitOps deployment (comin)
-- [ ] fail2ban/CrowdSec for public services
+- [ ] fail2ban/CrowdSec — only if something goes public again
 - [ ] sops-nix for secrets
 
 ## Ideas
 Vaultwarden (after backups), Tailscale exit node, RSS reader (Miniflux),
-Paperless-ngx, Audiobookshelf, Radicale, code-server
-
-## Done
-- [x] Forgejo at `git.luis.vi` (Caddy, HTTPS, registration off, localhost-only)
-- [x] Tailscale + doom coding (Termius, Claude Code, tmux)
-- [x] Tailscale key expiry disabled for `homelab`
-- [x] Key-only SSH (MacBook, iPhone)
-- [x] Automatic Nix GC + store optimisation
-- [x] ntfy at `ntfy.luis.vi` + `notify` command
-- [x] Config repo on Forgejo; push mirrors to GitHub
-- [x] Syncthing (Obsidian vault: iPhone ↔ homelab ↔ MacBook)
-- [x] Jellyfin (LAN + Tailscale, VA-API transcoding, trickplay)
-- [x] qBittorrent in Mullvad VPN namespace (leak-tested)
-- [x] Prowlarr (in VPN), Sonarr, Radarr — connected via `192.168.15.x`
+Paperless-ngx, Audiobookshelf, Radicale, code-server, bat-extras
+(batman, batgrep, batdiff) + MANPAGER via bat
 
 ## Habits
 - Monthly: `nix flake update`, `make`, commit `flake.lock`
