@@ -15,7 +15,7 @@
 - [ ] **Homepage dashboard** — one page linking every service, since nobody
       remembers the ports. `services.homepage-dashboard` (or Glance) behind
       Caddy. Jellyfin :8096, qBittorrent :8090, Prowlarr :9696, Sonarr :8989,
-      Radarr :7878, Syncthing :8384, Forgejo :3000, ntfy `ntfy.luis.vi`
+      Radarr :7878, Syncthing :8384, Forgejo :3000, ntfy :2586
 - [ ] **Immich** (self-hosted Google Photos) — `services.immich`, iPhone
       auto-upload, library on its own path under `/srv`. Only after backups:
       photos are irreplaceable. Add its library + Postgres dump to restic
@@ -34,9 +34,6 @@
       Radarr, Prowlarr, Syncthing) in `docs/`
 
 ## Parked
-- [ ] **Hairpin fix for home Wi-Fi** — dnsmasq answering `*.luis.vi` with the
-      Tailscale IP + Tailscale split DNS for `luis.vi` (free). Requires
-      Tailscale always on. Replaces laptop `/etc/hosts` and `networking.hosts`
 - [ ] **Receipt printer** — `lp` group, udev rule for `/dev/receipt_printer`,
       package Perl script with `writePerlBin`. No CUPS needed
 - [ ] **OpenClaw** — isolated (container/microVM/separate machine), gateway
@@ -57,7 +54,6 @@ Paperless-ngx, Audiobookshelf, Radicale, code-server
 
 ## Done
 - [x] Forgejo at `git.luis.vi` (Caddy, HTTPS, registration off, localhost-only)
-- [x] Hetzner DNS updater (`git`, `ntfy`)
 - [x] Tailscale + doom coding (Termius, Claude Code, tmux)
 - [x] Tailscale key expiry disabled for `homelab`
 - [x] Key-only SSH (MacBook, iPhone)
