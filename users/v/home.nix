@@ -37,45 +37,47 @@
     sessionPath = [ "$HOME/.local/bin" ];
   };
 
-  programs.bash = {
-    enable = true;
-    # Keep NixOS's existing Bash package, completion, and history/shopt defaults.
-    package = null;
-    enableCompletion = false;
-    historySize = null;
-    historyFileSize = null;
-    shellOptions = [ ];
-    initExtra = ''
-      # Keep bat within the Linux console's 16-color palette.
-      if [[ "$TERM" == linux ]]; then
-        export BAT_THEME=ansi
-      fi
+  programs = {
+    bash = {
+      enable = true;
+      # Keep NixOS's existing Bash package, completion, and history/shopt defaults.
+      package = null;
+      enableCompletion = false;
+      historySize = null;
+      historyFileSize = null;
+      shellOptions = [ ];
+      initExtra = ''
+        # Keep bat within the Linux console's 16-color palette.
+        if [[ "$TERM" == linux ]]; then
+          export BAT_THEME=ansi
+        fi
 
-      mkcdir () {
-          mkdir -p -- "$1" &&
-             cd -P -- "$1"
-      }
-    '';
-  };
-
-  programs.bat = {
-    enable = true;
-    config = {
-      theme = "Monokai Extended";
-      paging = "never";
-      style = "default";
+        mkcdir () {
+            mkdir -p -- "$1" &&
+               cd -P -- "$1"
+        }
+      '';
     };
-  };
 
-  programs.fzf = {
-    enable = true;
-    enableBashIntegration = true;
-  };
+    bat = {
+      enable = true;
+      config = {
+        theme = "Monokai Extended";
+        paging = "never";
+        style = "default";
+      };
+    };
 
-  programs.gh.enable = true;
+    fzf = {
+      enable = true;
+      enableBashIntegration = true;
+    };
 
-  programs.git = {
-    enable = true;
-    settings.init.defaultBranch = "main";
+    gh.enable = true;
+
+    git = {
+      enable = true;
+      settings.init.defaultBranch = "main";
+    };
   };
 }
