@@ -1,0 +1,15 @@
+name: lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: native
+    steps:
+      - uses: actions/checkout@v4
+      - run: nix fmt -- --ci
+      - run: nix develop -c statix check .
+      - run: nix develop -c deadnix --fail .
+      - run: nix flake check
