@@ -2,6 +2,8 @@ _:
 
 {
   uid = 1000;
+  # Keep user services (e.g. codex-kickstart) running while logged out.
+  linger = true;
   extraGroups = [
     "wheel"
     "media"
