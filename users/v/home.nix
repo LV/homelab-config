@@ -1,9 +1,10 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
     ../../modules/home/notify.nix
     ../../modules/home/clipboard.nix
+    ../../modules/home/dotfiles.nix
     ../../modules/home/claude-code.nix
     ../../modules/home/codex.nix
     ../../modules/home/pi.nix
@@ -36,8 +37,6 @@
     };
     sessionPath = [ "$HOME/.local/bin" ];
   };
-
-  xdg.configFile."bat/config".source = inputs.dotfiles + "/config/bat/config";
 
   programs = {
     bash = {
