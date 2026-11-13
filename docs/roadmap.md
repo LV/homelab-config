@@ -8,9 +8,6 @@
 
 ## Quick wins
 - [ ] Enable 2FA on Forgejo admin account
-- [ ] **Clipboard client checks** (`docs/clipboard.md`) — Ghostty on MacBook
-      and Termius on phone, plain SSH and tmux; both attached at once, large
-      payloads, console without tmux
 
 ## Next up
 - [ ] **Backups** — Hetzner Storage Box BX11 (€3.20/mo) + restic; enable
