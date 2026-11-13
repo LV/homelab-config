@@ -1,29 +1,9 @@
 # Clipboard
 
-`modules/home/clipboard.nix` provides `copy`, `pasta`, and Neovim clipboard
+`copy` and `pasta` come from the dotfiles' `bin/`; their script comments describe
+how they behave. `modules/home/clipboard.nix` wires them into Neovim's clipboard
 registers. Activate configuration changes with `make switch`; restart Neovim to
 load its new provider.
-
-## Shell
-
-```bash
-printf 'hello from the homelab\n' | copy
-copy < some-file.txt
-pasta
-```
-
-- `copy` reads text from stdin and strips all trailing newline characters.
-- It always saves the text to `${XDG_STATE_HOME:-$HOME/.local/state}/clipboard`.
-  The file is written atomically with mode `0600`. **It is unencrypted and remains
-  on disk**, so avoid treating it as a secret store.
-- In a capable terminal, `copy` also sends OSC 52 to the controlling terminal.
-  This does not require a local graphical session or an extra SSH connection.
-  It writes no text or escape sequences to stdout.
-- With `TERM=linux`, `TERM=dumb`, an unset/empty `TERM`, or no controlling terminal,
-  only the local file is updated. No terminal clipboard is required.
-- `pasta` prints the saved file without adding a newline. Before the first copy,
-  it reports an error. It **does not read the client's current clipboard**.
-- These are text tools, not binary-file transfer tools.
 
 The client terminal must support and permit OSC 52 clipboard writes. Sending the
 sequence cannot confirm whether the client accepted it. Payload limits vary
@@ -82,19 +62,13 @@ this module. Alternatively use the explicit `path:.` flake reference while
 working on untracked files.
 
 ```bash
-copy_pkg=$(nix build --no-link --print-out-paths --impure --expr '
-  let flake = builtins.getFlake ("path:" + toString ./.);
-  in builtins.head (builtins.filter (p: p.name == "copy")
-    flake.nixosConfigurations.homelab.config.home-manager.users.v.home.packages)')
-pasta_pkg=$(nix build --no-link --print-out-paths --impure --expr '
-  let flake = builtins.getFlake ("path:" + toString ./.);
-  in builtins.head (builtins.filter (p: p.name == "pasta")
-    flake.nixosConfigurations.homelab.config.home-manager.users.v.home.packages)')
+dotfiles=$(nix eval --raw --impure --expr \
+  '(builtins.getFlake ("path:" + toString ./.)).inputs.dotfiles.outPath')
 init=$(mktemp --suffix=.lua)
 nix eval --raw \
   'path:.#nixosConfigurations.homelab.config.home-manager.users.v.programs.neovim.initLua' \
   > "$init"
-python3 tests/clipboard.py "$copy_pkg/bin/copy" "$pasta_pkg/bin/pasta" "$init"
+python3 tests/clipboard.py "$dotfiles/bin/copy" "$dotfiles/bin/pasta" "$init"
 rm -f "$init"
 ```
 
