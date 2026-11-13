@@ -11,5 +11,8 @@
     '')
   ];
 
+  # Prompt, aliases, and functions; Home Manager still owns ~/.bashrc itself.
+  programs.bash.initExtra = "source ${inputs.dotfiles}/config/bash/.bashrc";
+
   xdg.configFile."bat/config".source = inputs.dotfiles + "/config/bat/config";
 }

@@ -29,12 +29,6 @@
       uv
     ];
 
-    shellAliases = {
-      cat = "bat --paging=never";
-      gg = "lazygit";
-      t = "tmux";
-      v = "nvim";
-    };
     sessionPath = [ "$HOME/.local/bin" ];
   };
 
@@ -52,11 +46,6 @@
         if [[ "$TERM" == linux ]]; then
           export BAT_THEME=ansi
         fi
-
-        mkcdir () {
-            mkdir -p -- "$1" &&
-               cd -P -- "$1"
-        }
       '';
     };
 
