@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -29,13 +29,15 @@
     ];
 
     shellAliases = {
-      cat = "bat";
+      cat = "bat --paging=never";
       gg = "lazygit";
       t = "tmux";
       v = "nvim";
     };
     sessionPath = [ "$HOME/.local/bin" ];
   };
+
+  xdg.configFile."bat/config".source = inputs.dotfiles + "/config/bat/config";
 
   programs = {
     bash = {
@@ -59,14 +61,7 @@
       '';
     };
 
-    bat = {
-      enable = true;
-      config = {
-        theme = "Monokai Extended";
-        paging = "never";
-        style = "default";
-      };
-    };
+    bat.enable = true;
 
     fzf = {
       enable = true;
