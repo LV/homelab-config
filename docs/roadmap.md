@@ -51,7 +51,10 @@
       package Perl script with `writePerlBin`. No CUPS needed
 
 ## Later (once reliability matters)
-- [ ] SSD health monitoring (`services.smartd`)
+- [ ] **SSD health alerts**: ntfy notification when
+      `smartctl_device_critical_warning != 0`, `smartctl_device_media_errors`
+      rises, or available spare drops below its threshold (metrics already
+      collected by `metrics/smart.nix`)
 - [ ] Clean shutdown on low battery
 - [ ] Automated `flake.lock` update PRs
 - [ ] GitOps deployment (comin)
