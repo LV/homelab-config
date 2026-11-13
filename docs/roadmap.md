@@ -8,8 +8,6 @@
 
 ## Quick wins
 - [ ] Enable 2FA on Forgejo admin account
-- [ ] **Wired Ethernet** — Wi-Fi is the only link, and alerts depend on it;
-      plug the T480 into the router if a cable run is practical
 
 ## Next up
 - [ ] **Backups** — Hetzner Storage Box BX11 (€3.20/mo) + restic; enable
@@ -23,7 +21,7 @@
       scratch path, compare), then a few times a year
 - [ ] **Dead-man's switch** — always-firing `Watchdog` alert, routed by
       Alertmanager to healthchecks.io, which alerts when pings stop. Covers
-      the box, Wi-Fi, Prometheus and Alertmanager; the box's own alerts go
+      the box, network, Prometheus and Alertmanager; the box's own alerts go
       silent if any of those fail
 - [ ] **Low-battery shutdown**
   - UPower powers off cleanly at a critical battery level
