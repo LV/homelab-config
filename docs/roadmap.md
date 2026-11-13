@@ -8,6 +8,8 @@
 
 ## Quick wins
 - [ ] Enable 2FA on Forgejo admin account
+- [ ] **Wired Ethernet** — Wi-Fi is the only link, and alerts depend on it;
+      plug the T480 into the router if a cable run is practical
 
 ## Next up
 - [ ] **Backups** — Hetzner Storage Box BX11 (€3.20/mo) + restic; enable
@@ -16,10 +18,13 @@
       Prowlarr, qBittorrent, Syncthing, Grafana, ntfy (user DB) state, and
       `/var/lib/secrets` (Grafana's secret key can't be regenerated).
       Exclude: `/srv/media`
-      Alert (ntfy) when the last successful backup is over 2 days old
-- [ ] **Dead-man's switch** — timer pings healthchecks.io every few minutes;
-      it alerts when pings stop. The box is Wi-Fi only, and if it drops
-      (power, network, Tailscale) its own alerts go silent too
+      Alert (ntfy) when the last successful backup is over 2 days old.
+      Test a restore after setup (one service's state + some vault files to a
+      scratch path, compare), then a few times a year
+- [ ] **Dead-man's switch** — always-firing `Watchdog` alert, routed by
+      Alertmanager to healthchecks.io, which alerts when pings stop. Covers
+      the box, Wi-Fi, Prometheus and Alertmanager; the box's own alerts go
+      silent if any of those fail
 - [ ] **Low-battery shutdown**
   - UPower powers off cleanly at a critical battery level
   - `BatteryLow` alert before that, so the shutdown isn't a surprise
@@ -53,6 +58,8 @@
       package Perl script with `writePerlBin`. No CUPS needed
 
 ## Later (once reliability matters)
+- [ ] **Service uptime checks** — blackbox exporter probes each service URL;
+      alert when one is running but broken (e.g. Jellyfin returning 502s)
 - [ ] Automated `flake.lock` update PRs
 - [ ] GitOps deployment (comin)
 - [ ] sops-nix for secrets
