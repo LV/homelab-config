@@ -38,6 +38,24 @@ mkdir -p ~/.config/ntfy
 # paste token, Enter
 ```
 
+### alertmanager-ntfy token
+
+- **Path:** `/var/lib/secrets/alertmanager-ntfy.yml`
+- **What:** the ntfy access token from `/var/lib/secrets/ntfy.env`, as a YAML
+  snippet merged into the bridge's config
+- **Used by:** `alerting` module (`services.prometheus.alertmanager-ntfy.extraConfigFiles`)
+
+```bash
+sudo sh -c 'umask 077; cat > /var/lib/secrets/alertmanager-ntfy.yml'
+# paste the lines below with the real token, Enter, Ctrl+D
+```
+
+```yaml
+ntfy:
+  auth:
+    token: tk_...
+```
+
 ## Forgejo runner
 
 - **Path:** `/var/lib/secrets/forgejo-runner-token`

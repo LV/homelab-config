@@ -15,8 +15,6 @@
 ## Next up
 - [ ] **End-to-end *arr test** — add *Night of the Living Dead* (1968) in Radarr
       via Internet Archive; confirm qBittorrent → hardlink import → Jellyfin
-- [ ] **ntfy failure alerts** — `OnFailure=` hook notifies when a service fails;
-      reuse ntfy token via `LoadCredential`
 - [ ] **Backups** — Hetzner Storage Box BX11 (€3.20/mo) + restic; enable
       automatic snapshots. Now urgent: server holds irreplaceable data.
       Include: `/home/v` (Obsidian vault), Forgejo, Jellyfin, Sonarr, Radarr,
@@ -51,10 +49,8 @@
       package Perl script with `writePerlBin`. No CUPS needed
 
 ## Later (once reliability matters)
-- [ ] **SSD health alerts**: ntfy notification when
-      `smartctl_device_critical_warning != 0`, `smartctl_device_media_errors`
-      rises, or available spare drops below its threshold (metrics already
-      collected by `metrics/smart.nix`)
+- [ ] **Dead-man's switch**: timer pings healthchecks.io; alerts if the
+      homelab goes silent (power, network, Tailscale)
 - [ ] Clean shutdown on low battery
 - [ ] Automated `flake.lock` update PRs
 - [ ] GitOps deployment (comin)

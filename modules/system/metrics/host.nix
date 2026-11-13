@@ -33,6 +33,61 @@ in
         ];
       }
     ];
+
+    ruleFiles = [
+      (pkgs.writeText "host-rules.json" (
+        builtins.toJSON {
+          groups = [
+            {
+              name = "host";
+              rules = [
+                {
+                  alert = "SystemdUnitFailed";
+                  expr = ''node_systemd_unit_state{state="failed"} == 1'';
+                  for = "1m";
+                  labels.severity = "warning";
+                  annotations = {
+                    summary = "Unit failed: {{ $labels.name }}";
+                    description = "{{ $labels.name }} is in the failed state on {{ $labels.instance }}.";
+                  };
+                }
+                {
+                  alert = "DiskAlmostFull";
+                  expr = ''node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"} < 0.15'';
+                  for = "15m";
+                  labels.severity = "warning";
+                  annotations = {
+                    summary = "Disk almost full on {{ $labels.instance }}";
+                    description = "Only {{ $value | humanizePercentage }} free on /.";
+                  };
+                }
+                {
+                  alert = "OnBattery";
+                  expr = ''node_power_supply_online{power_supply="AC"} == 0'';
+                  for = "2m";
+                  labels.severity = "critical";
+                  annotations = {
+                    summary = "On battery: {{ $labels.instance }}";
+                    description = "AC power has been lost for over 2 minutes.";
+                  };
+                }
+                {
+                  alert = "CpuHot";
+                  # The CPU's critical temperature is 100 (node_hwmon_temp_crit_celsius)
+                  expr = ''max by (instance) (node_hwmon_temp_celsius{chip="platform_coretemp_0"}) > 90'';
+                  for = "10m";
+                  labels.severity = "warning";
+                  annotations = {
+                    summary = "CPU hot on {{ $labels.instance }}";
+                    description = "CPU at {{ $value }}°C for over 10 minutes.";
+                  };
+                }
+              ];
+            }
+          ];
+        }
+      ))
+    ];
   };
 
   services.grafana.provision.dashboards.settings.providers = [

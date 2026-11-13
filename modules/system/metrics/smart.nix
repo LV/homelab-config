@@ -39,6 +39,71 @@ in
         ];
       }
     ];
+
+    ruleFiles = [
+      (pkgs.writeText "smart-rules.json" (
+        builtins.toJSON {
+          groups = [
+            {
+              name = "smart";
+              rules = [
+                {
+                  # NVMe's own "something is wrong" bitmask: spare below
+                  # threshold, temperature, reliability, read-only, backup power
+                  alert = "SsdCriticalWarning";
+                  expr = "smartctl_device_critical_warning != 0";
+                  labels.severity = "critical";
+                  annotations = {
+                    summary = "SSD critical warning: {{ $labels.device }}";
+                    description = "{{ $labels.device }} on {{ $labels.instance }} reports critical_warning={{ $value }}.";
+                  };
+                }
+                {
+                  alert = "SsdSmartFailed";
+                  expr = "smartctl_device_smart_status == 0";
+                  labels.severity = "critical";
+                  annotations = {
+                    summary = "SSD SMART failed: {{ $labels.device }}";
+                    description = "{{ $labels.device }} on {{ $labels.instance }} fails its SMART self-assessment.";
+                  };
+                }
+                {
+                  # The counter never resets, so alert on new errors only
+                  alert = "SsdMediaErrors";
+                  expr = "increase(smartctl_device_media_errors[1h]) > 0";
+                  labels.severity = "warning";
+                  annotations = {
+                    summary = "SSD media errors: {{ $labels.device }}";
+                    description = "{{ $labels.device }} on {{ $labels.instance }} logged new media errors in the last hour.";
+                  };
+                }
+                {
+                  alert = "SsdWearHigh";
+                  expr = "smartctl_device_percentage_used >= 80";
+                  labels.severity = "warning";
+                  annotations = {
+                    summary = "SSD wear high: {{ $labels.device }}";
+                    description = "{{ $labels.device }} on {{ $labels.instance }} has used {{ $value }}% of its rated endurance.";
+                  };
+                }
+                {
+                  # Exporter up but sees no drive (e.g. no access to the
+                  # device); 30m covers its 10m rescan after boot
+                  alert = "SsdDataMissing";
+                  expr = "absent(smartctl_device)";
+                  for = "30m";
+                  labels.severity = "warning";
+                  annotations = {
+                    summary = "No SSD health data";
+                    description = "smartctl_exporter reports no drives; check its journal.";
+                  };
+                }
+              ];
+            }
+          ];
+        }
+      ))
+    ];
   };
 
   services.grafana.provision.dashboards.settings.providers = [
