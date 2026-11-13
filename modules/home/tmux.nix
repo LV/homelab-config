@@ -16,6 +16,8 @@ _:
       set -g extended-keys-format csi-u
       set -g mouse on
       set -g renumber-windows on
+      set -g set-titles on
+      set -g set-titles-string '#T'
       bind c new-window -c "#{pane_current_path}"
     '';
   };
