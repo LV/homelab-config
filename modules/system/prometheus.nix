@@ -11,7 +11,10 @@ in
     listenAddress = "127.0.0.1"; # exposed only through tailscale serve
     inherit port;
     retentionTime = "1y";
-    globalConfig.scrape_interval = "15s";
+    globalConfig = {
+      scrape_interval = "15s";
+      evaluation_interval = "15s"; # check rules on every scrape (default 1m)
+    };
   };
 
   homelab.tailscaleServe.prometheus = port;

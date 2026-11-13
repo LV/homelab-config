@@ -19,6 +19,9 @@ in
             "alertname"
             "instance"
           ];
+          # One host, few rules: little to batch, so notify fast
+          group_wait = "10s"; # first notification (default 30s)
+          group_interval = "1m"; # updates and resolved notices (default 5m)
           # Alerts that stay on (e.g. SSD wear) remind twice a day
           repeat_interval = "12h";
         };
