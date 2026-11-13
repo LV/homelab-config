@@ -13,14 +13,21 @@
       payloads, console without tmux
 
 ## Next up
-- [ ] **End-to-end *arr test** — add *Night of the Living Dead* (1968) in Radarr
-      via Internet Archive; confirm qBittorrent → hardlink import → Jellyfin
 - [ ] **Backups** — Hetzner Storage Box BX11 (€3.20/mo) + restic; enable
       automatic snapshots. Now urgent: server holds irreplaceable data.
       Include: `/home/v` (Obsidian vault), Forgejo, Jellyfin, Sonarr, Radarr,
       Prowlarr, qBittorrent, Syncthing, Grafana, ntfy (user DB) state, and
       `/var/lib/secrets` (Grafana's secret key can't be regenerated).
       Exclude: `/srv/media`
+      Alert (ntfy) when the last successful backup is over 2 days old
+- [ ] **Dead-man's switch** — timer pings healthchecks.io every few minutes;
+      it alerts when pings stop. The box is Wi-Fi only, and if it drops
+      (power, network, Tailscale) its own alerts go silent too
+- [ ] **Low-battery shutdown**
+  - UPower powers off cleanly at a critical battery level
+  - `BatteryLow` alert before that, so the shutdown isn't a surprise
+  - Check by hand: does coreboot power the laptop back on when AC returns?
+    If not, a long outage leaves it off until someone presses power
 - [ ] **AI usage monitoring**
   - Collect Claude and Codex credit usage (a `/status`-style check) into
     Prometheus; graph it in Grafana
@@ -49,9 +56,6 @@
       package Perl script with `writePerlBin`. No CUPS needed
 
 ## Later (once reliability matters)
-- [ ] **Dead-man's switch**: timer pings healthchecks.io; alerts if the
-      homelab goes silent (power, network, Tailscale)
-- [ ] Clean shutdown on low battery
 - [ ] Automated `flake.lock` update PRs
 - [ ] GitOps deployment (comin)
 - [ ] sops-nix for secrets
