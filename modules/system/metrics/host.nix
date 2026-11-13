@@ -72,6 +72,17 @@ in
                   };
                 }
                 {
+                  # Traffic falls back to Wi-Fi silently; say the cable is out
+                  alert = "EthernetDown";
+                  expr = ''node_network_carrier{device="eno0"} == 0'';
+                  for = "5m";
+                  labels.severity = "warning";
+                  annotations = {
+                    summary = "Ethernet down: {{ $labels.instance }}";
+                    description = "No link on eno0 for over 5 minutes; traffic is on Wi-Fi.";
+                  };
+                }
+                {
                   alert = "CpuHot";
                   # The CPU's critical temperature is 100 (node_hwmon_temp_crit_celsius)
                   expr = ''max by (instance) (node_hwmon_temp_celsius{chip="platform_coretemp_0"}) > 90'';
