@@ -21,6 +21,11 @@
       url = "github:sadjow/codex-cli-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Home Manager modules pick files from config/<program>/; make update bumps it.
+    dotfiles = {
+      url = "github:LV/dotfiles";
+      flake = false;
+    };
   };
 
   outputs =

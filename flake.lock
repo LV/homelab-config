@@ -42,6 +42,22 @@
         "type": "github"
       }
     },
+    "dotfiles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794578818,
+        "narHash": "sha256-/ejVRc9KtNB8HOnbRfZOCrfyGEcqdCyzr13n5TF2ciU=",
+        "owner": "LV",
+        "repo": "dotfiles",
+        "rev": "bcdabdb9cd4c202a424552792b81251ece66b8ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LV",
+        "repo": "dotfiles",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems_2"
@@ -125,6 +141,7 @@
       "inputs": {
         "claude-code": "claude-code",
         "codex": "codex",
+        "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "pi": "pi",
