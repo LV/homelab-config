@@ -19,10 +19,6 @@
       Alert (ntfy) when the last successful backup is over 2 days old.
       Test a restore after setup (one service's state + some vault files to a
       scratch path, compare), then a few times a year
-- [ ] **Dead-man's switch** — always-firing `Watchdog` alert, routed by
-      Alertmanager to healthchecks.io, which alerts when pings stop. Covers
-      the box, network, Prometheus and Alertmanager; the box's own alerts go
-      silent if any of those fail
 - [ ] **Low-battery shutdown**
   - UPower powers off cleanly at a critical battery level
   - `BatteryLow` alert before that, so the shutdown isn't a surprise

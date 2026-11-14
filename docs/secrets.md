@@ -56,6 +56,21 @@ ntfy:
     token: tk_...
 ```
 
+## healthchecks.io ping URL
+
+- **Path:** `/var/lib/secrets/healthchecks-url`
+- **What:** the ping URL of the `lap-t480-01-watchdog` check
+  (`https://hc-ping.com/<uuid>`), alone on one line
+- **Used by:** `alerting` module (systemd credential `healthchecks-url`)
+
+```bash
+sudo sh -c 'umask 077; cat > /var/lib/secrets/healthchecks-url'
+# paste URL, Enter, Ctrl+D
+```
+
+The check's ntfy.sh topic is a secret too, but nothing here needs it: it
+lives only in healthchecks.io and the ntfy app. Never commit it.
+
 ## Forgejo runner
 
 - **Path:** `/var/lib/secrets/forgejo-runner-token`

@@ -24,11 +24,34 @@ in
           group_interval = "1m"; # updates and resolved notices (default 5m)
           # Alerts that stay on (e.g. SSD wear) remind twice a day
           repeat_interval = "12h";
+          routes = [
+            {
+              # Dead-man's switch: ping healthchecks.io every minute; it
+              # alerts from outside this box when the pings stop
+              matchers = [ ''alertname="Watchdog"'' ];
+              receiver = "healthchecks";
+              group_wait = "0s";
+              # Repeats are only checked on group_interval ticks, and 1m/1m
+              # lands just short of due, so pings came every 2m
+              group_interval = "15s";
+              repeat_interval = "1m";
+            }
+          ];
         };
         receivers = [
           {
             name = "ntfy";
             webhook_configs = [ { url = "http://${bridgeAddr}/hook"; } ];
+          }
+          {
+            name = "healthchecks";
+            webhook_configs = [
+              {
+                url_file = "/run/credentials/alertmanager.service/healthchecks-url";
+                # A resolved notice would count as a ping, masking a dead Prometheus
+                send_resolved = false;
+              }
+            ];
           }
         ];
       };
@@ -60,6 +83,13 @@ in
               name = "prometheus";
               rules = [
                 {
+                  # Always fires; routed to healthchecks.io as a heartbeat
+                  alert = "Watchdog";
+                  expr = "vector(1)";
+                  labels.severity = "none";
+                  annotations.summary = "Alerting pipeline heartbeat";
+                }
+                {
                   alert = "TargetDown";
                   expr = "up == 0";
                   for = "5m";
@@ -76,6 +106,11 @@ in
       ))
     ];
   };
+
+  # healthchecks.io ping URL; see docs/secrets.md
+  systemd.services.alertmanager.serviceConfig.LoadCredential = [
+    "healthchecks-url:/var/lib/secrets/healthchecks-url"
+  ];
 
   services.grafana.provision.datasources.settings.datasources = [
     {
