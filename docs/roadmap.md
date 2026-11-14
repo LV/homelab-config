@@ -16,9 +16,13 @@
       Prowlarr, qBittorrent, Syncthing, Grafana, ntfy (user DB) state, and
       `/var/lib/secrets` (Grafana's secret key can't be regenerated).
       Exclude: `/srv/media`
-      Alert (ntfy) when the last successful backup is over 2 days old.
+      After each successful run, ping a second healthchecks.io check
+      (period 1 day, grace 1 day), so a stale backup alerts from outside
+      the box.
       Test a restore after setup (one service's state + some vault files to a
-      scratch path, compare), then a few times a year
+      scratch path, compare), then a few times a year. Write
+      `docs/recovery.md` from it: reinstall + `make switch`, restore from
+      restic, put back `/var/lib/secrets`, re-join Tailscale
 - [ ] **Low-battery shutdown**
   - UPower powers off cleanly at a critical battery level
   - `BatteryLow` alert before that, so the shutdown isn't a surprise
