@@ -70,7 +70,7 @@ in
         ];
       }
       {
-        Tools = [
+        Workspace = [
           {
             Excalidraw = {
               href = "https://${host}:8085";
@@ -78,6 +78,10 @@ in
               description = "Diagram and whiteboard editor";
             };
           }
+        ];
+      }
+      {
+        Infrastructure = [
           {
             Forgejo = {
               href = "https://${host}:3000";
