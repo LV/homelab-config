@@ -4,6 +4,7 @@ _:
   imports = [
     ./hardware-configuration.nix
     ../../modules/system/alerting.nix
+    ../../modules/system/excalidraw.nix
     ../../modules/system/forgejo.nix
     ../../modules/system/forgejo-runner.nix
     ../../modules/system/grafana.nix

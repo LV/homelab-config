@@ -72,6 +72,13 @@ in
       {
         Tools = [
           {
+            Excalidraw = {
+              href = "https://${host}:8085";
+              icon = "excalidraw.png";
+              description = "Diagram and whiteboard editor";
+            };
+          }
+          {
             Forgejo = {
               href = "https://${host}:3000";
               icon = "forgejo.png";
