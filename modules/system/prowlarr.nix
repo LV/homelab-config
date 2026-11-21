@@ -1,7 +1,11 @@
 _:
 
 {
-  services.prowlarr.enable = true;
+  services.prowlarr = {
+    enable = true;
+    # Honor Tailscale Serve's forwarded HTTPS scheme on the VPN bridge.
+    settings.server.trustedNetworks = "192.168.15.5/32";
+  };
 
   systemd.services.prowlarr.vpnConfinement = {
     enable = true;

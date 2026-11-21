@@ -5,7 +5,11 @@
   # calls it; the tailnet reaches it through Serve
   services.sonarr = {
     enable = true;
-    settings.server.bindaddress = "192.168.15.5";
+    settings.server = {
+      bindaddress = "192.168.15.5";
+      # Honor Tailscale Serve's forwarded HTTPS scheme on the VPN bridge.
+      trustedNetworks = "192.168.15.5/32";
+    };
   };
 
   homelab.tailscaleServe.sonarr = {
